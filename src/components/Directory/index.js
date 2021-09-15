@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ManParfume from "./../../../src/assets/ManParfume.jpg";
 import WomanParfume from "./../../../src/assets/WomanParfume.jpg";
+import "./styles.scss";
 
 const Directory = (props) => {
   return (
@@ -10,8 +10,12 @@ const Directory = (props) => {
         <div className="item" style={{ backgroundImage: `url(${ManParfume})` }}>
           <a>Man Shop</a>
         </div>
-        <div style={{ backgroundImage: `url(${WomanParfume})` }}></div>
-        <a>Man Shop</a>
+        <div
+          className="item"
+          style={{ backgroundImage: `url(${WomanParfume})` }}
+        >
+          <a>Woman Shop</a>
+        </div>
       </div>
     </div>
   );
