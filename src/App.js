@@ -1,14 +1,16 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 // layouts
-import MainLayout from "./components/layouts/MainLayout";
+import MainLayout from './components/layouts/MainLayout';
+import HomepageLayout from './components/layouts/HomepageLayout';
+
 
 // pages
-import Homepage from "././pages/Homepage";
-import Registration from "./pages/Registration";
+import Homepage from '././pages/Homepage';
+import Registration from './pages/Registration';
 
-import "./default.scss";
+import './default.scss';
 
 function App(props) {
   return (
@@ -18,9 +20,9 @@ function App(props) {
           exact
           path="/"
           render={() => (
-            <MainLayout>
+            <HomepageLayout>
               <Homepage />
-            </MainLayout>
+            </HomepageLayout>
           )}
         />
         <Route
