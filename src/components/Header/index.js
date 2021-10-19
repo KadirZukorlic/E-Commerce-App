@@ -1,13 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {auth} from './../../firebase/utils';
 
-import Logo from "./../../assets/phoenix-logo.png";
+import Logo from './../../assets/phoenix-logo.png';
 
-import "./styles.scss";
+import './styles.scss';
 
 const Header = (props) => {
+  console.log(props, ' props');
   const { currentUser } = props;
-  console.log(currentUser, "current user");
+  console.log(currentUser, 'current user');
 
   return (
     <header className="header">
@@ -21,7 +23,7 @@ const Header = (props) => {
           {currentUser && (
             <ul>
               <li>
-                <span>LogOut</span>
+                <span onClick={() => auth.signOut()}>LogOut</span>
               </li>
             </ul>
           )}
