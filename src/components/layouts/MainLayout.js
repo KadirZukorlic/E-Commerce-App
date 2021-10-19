@@ -6,7 +6,7 @@ const MainLayout = (props) => {
   console.log(props, 'PROPS');
   return (
     <div>
-      <Header />
+      <Header {...props}/>
       <div className="main">
         {props.children}
       </div>
