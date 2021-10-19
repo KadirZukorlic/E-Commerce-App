@@ -4,9 +4,8 @@ import './styles.scss';
 
 const Button = ({ children, ...otherProps }) => {
   return (
-    <button className="" {...otherProps}>
+    <button className="btn" {...otherProps}>
       {children}
-      <h2>h2</h2>
     </button>
   );
 };
