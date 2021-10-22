@@ -12,7 +12,7 @@ const initialState = {
   email: "",
   password: "",
   confirmPassword: "",
-  errors: []
+  errors: [],
 };
 
 class SignUp extends Component {
@@ -33,19 +33,33 @@ class SignUp extends Component {
 
   handleFormSubmit = async (event) => {
     event.preventDefault();
-    const { displayName, email, password, confirmPassword, errors } = this.state;
+    const { displayName, email, password, confirmPassword, errors } =
+      this.state;
 
     if (password !== confirmPassword) {
-      const err = ['Password Don\'t match'];
+      const err = ["Password Don't match"];
       this.setState({
-        errors: err
+        errors: err,
+      });
+      return;
+    }
+
+    try {
+      const { user } = auth.createUserWithEmailAndPassword(email, password);
+
+      await handleUserProfile(user, { displayName });
+
+      this.setState({
+        ...initialState
       })
-      return ;
+    } catch (error) {
+      console.log(error);
     }
   };
 
   render() {
-    const { displayName, email, password, confirmPassword, errors } = this.state;
+    const { displayName, email, password, confirmPassword, errors } =
+      this.state;
 
     return (
       <div className="signup">
@@ -55,19 +69,13 @@ class SignUp extends Component {
           {errors.length > 0 && (
             <ul>
               {errors.map((error, index) => {
-                return (
-                  <li key={index}>
-                  {error}
-                </li>
-                )
-  
+                return <li key={index}>{error}</li>;
               })}
             </ul>
           )}
 
           <div className="formWrap">
             <form onSubmit={this.handleFormSubmit}>
-              {displayName}
               <FormInput
                 type="text"
                 name="displayName"
