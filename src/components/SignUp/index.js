@@ -33,11 +33,10 @@ class SignUp extends Component {
 
   handleFormSubmit = async (event) => {
     event.preventDefault();
-    const { displayName, email, password, confirmPassword, errors } =
-      this.state;
+    const { displayName, email, password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
-      const err = ["Password Don't match"];
+      const err = ["Passwords Doesn't match"];
       this.setState({
         errors: err,
       });
@@ -50,8 +49,8 @@ class SignUp extends Component {
       await handleUserProfile(user, { displayName });
 
       this.setState({
-        ...initialState
-      })
+        ...initialState,
+      });
     } catch (error) {
       console.log(error);
     }

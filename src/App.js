@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { auth, handleUserProfile } from './firebase/utils';
+import React, { Component } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { auth, handleUserProfile } from "./firebase/utils";
 
 // layouts
-import MainLayout from './components/layouts/MainLayout';
-import HomepageLayout from './components/layouts/HomepageLayout';
+import MainLayout from "./components/layouts/MainLayout";
+import HomepageLayout from "./components/layouts/HomepageLayout";
 
 // pages
-import Homepage from '././pages/Homepage';
-import Registration from './pages/Registration';
-import Login from './pages/Login';
+import Homepage from "././pages/Homepage";
+import Registration from "./pages/Registration";
+import Login from "./pages/Login";
 
-import './default.scss';
+import "./default.scss";
 
 const initialState = {
   currentUser: null,
@@ -28,21 +28,21 @@ class App extends Component {
   authListener = null;
 
   componentDidMount() {
-    this.authListener = auth.onAuthStateChanged(async userAuth => {
+    this.authListener = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
-       const userRef = await handleUserProfile(userAuth)
-        userRef.onSnapshot(snapshot => {
+        const userRef = await handleUserProfile(userAuth);
+        userRef.onSnapshot((snapshot) => {
           this.setState({
             currentUser: {
               id: snapshot.id,
               ...snapshot.data(),
-            }
-          })
-        })
+            },
+          });
+        });
       }
       this.setState({
-        ...initialState
-      })
+        ...initialState,
+      });
     });
   }
 
@@ -68,11 +68,15 @@ class App extends Component {
           <Route
             exact
             path="/registration"
-            render={() => (
-              <MainLayout currentUser={currentUser}>
-                <Registration />
-              </MainLayout>
-            )}
+            render={() =>
+              currentUser ? (
+                <Redirect to="/" />
+              ) : (
+                <MainLayout currentUser={currentUser}>
+                  <Registration />
+                </MainLayout>
+              )
+            }
           />
           <Route
             exact
