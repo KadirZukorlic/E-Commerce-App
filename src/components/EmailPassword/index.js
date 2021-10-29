@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import AuthWrapper from '../AuthWrapper';
 import FormInput from '../Forms/FormInput';
@@ -10,6 +11,7 @@ import './styles.scss';
 
 const initialState = {
   email: '',
+  error: [],
 };
 
 class EmailPassword extends Component {
@@ -35,24 +37,27 @@ class EmailPassword extends Component {
     try {
       const { email } = this.state;
       const config = {
-          url: 'http://localhost:3000/login'
-      }
+        url: 'http://localhost:3000/login',
+      };
 
-      await auth.sendPasswordResetEmail(email, config)
-      .then(() => {
-        console.log('password Reset')
-      })
-      .catch(() => {
-        console.log('Something went wrong')
-      })
-
+      await auth
+        .sendPasswordResetEmail(email, config)
+        .then(() => {
+          this.props.history.push('/login');
+        })
+        .catch(() => {
+          const err = ['Email not found. Please try again. :-('];
+          this.setState({
+            error: err,
+          });
+        });
     } catch (error) {
       console.log(error);
     }
   };
 
   render() {
-    const { email } = this.state;
+    const { email, error } = this.state;
 
     const configAuthWrapper = {
       headline: 'Email Password',
@@ -61,6 +66,17 @@ class EmailPassword extends Component {
     return (
       <AuthWrapper {...configAuthWrapper}>
         <div className="formWrap">
+
+            {error.length > 0 && (
+                <ul>
+                    {error.map((err, index) => {
+                        return (
+                            <li key={index}>{err}</li>
+                        )
+                    })}
+                </ul>
+            )}
+
           <form onSubmit={this.handleSubmit}>
             <FormInput
               type="email"
@@ -69,12 +85,12 @@ class EmailPassword extends Component {
               placeholder="Email"
               onChange={this.handleChange}
             />
+            <Button type="submit">Email Password</Button>
           </form>
         </div>
-        <Button type="submit">Email Password</Button>
       </AuthWrapper>
     );
   }
 }
 
-export default EmailPassword;
+export default withRouter(EmailPassword);
