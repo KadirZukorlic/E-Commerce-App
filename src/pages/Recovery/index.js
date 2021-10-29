@@ -1,10 +1,9 @@
 import React from 'react';
 
-const Recovery = (props) => {
-    return (<div>
+import EmailPassword from './../../components/EmailPassword';
 
-        recovery
-    </div>)
+const Recovery = (props) => {
+    return <EmailPassword />
 }
 
 export default Recovery
