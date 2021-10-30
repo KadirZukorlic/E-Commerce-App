@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
-import AuthWrapper from '../AuthWrapper';
-import FormInput from '../Forms/FormInput';
-import Button from '../Forms/Button';
+import AuthWrapper from "../AuthWrapper";
+import FormInput from "../Forms/FormInput";
+import Button from "../Forms/Button";
 
-import { auth } from '../../firebase/utils';
+import { auth } from "../../firebase/utils";
 
-import './styles.scss';
+import "./styles.scss";
 
 const initialState = {
-  email: '',
+  email: "",
   error: [],
 };
 
@@ -37,16 +37,16 @@ class EmailPassword extends Component {
     try {
       const { email } = this.state;
       const config = {
-        url: 'http://localhost:3000/login',
+        url: "http://localhost:3000/login",
       };
 
       await auth
         .sendPasswordResetEmail(email, config)
         .then(() => {
-          this.props.history.push('/login');
+          this.props.history.push("/login");
         })
         .catch(() => {
-          const err = ['Email not found. Please try again. :-('];
+          const err = ["Email not found. Please try again. :-("];
           this.setState({
             error: err,
           });
@@ -60,22 +60,23 @@ class EmailPassword extends Component {
     const { email, error } = this.state;
 
     const configAuthWrapper = {
-      headline: 'Email Password',
+      headline: "Email Password",
     };
 
     return (
       <AuthWrapper {...configAuthWrapper}>
         <div className="formWrap">
-
-            {error.length > 0 && (
-                <ul>
-                    {error.map((err, index) => {
-                        return (
-                            <li key={index}>{err}</li>
-                        )
-                    })}
-                </ul>
-            )}
+          {error.length > 0 && (
+            <ul>
+              {error.map((err, index) => {
+                return (
+                  <li key={index} style={{ color: "red" }}>
+                    {err}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
 
           <form onSubmit={this.handleSubmit}>
             <FormInput
