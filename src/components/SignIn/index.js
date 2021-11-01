@@ -71,7 +71,7 @@ class SignIn extends Component {
               onChange={this.handleChange}
             />
 
-            <Button type="submit"> Log In</Button>
+            <Button type="submit">Log In</Button>
 
             <div className="socialSignIn">
               <div className="row">
