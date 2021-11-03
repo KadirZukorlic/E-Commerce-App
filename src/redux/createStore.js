@@ -6,7 +6,6 @@ import rootReducer from "./rootReducer";
 export const middlewares = [logger];
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // redux devtools
-
 export const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(...middlewares))
