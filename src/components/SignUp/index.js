@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router";
 
 import { auth, handleUserProfile } from "./../../firebase/utils";
 import AuthWrapper from "../AuthWrapper/index";
@@ -34,8 +35,9 @@ const SignUp = (props) => {
 
     try {
       const { user } = auth.createUserWithEmailAndPassword(email, password);
-
       await handleUserProfile(user, { displayName });
+      resetForm();
+      props.history.push('/')
     } catch (error) {
       console.log(error);
     }
@@ -93,4 +95,4 @@ const SignUp = (props) => {
   );
 };
 
-export default SignUp;
+export default withRouter(SignUp);

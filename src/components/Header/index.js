@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { auth } from "./../../firebase/utils";
@@ -22,7 +23,16 @@ const Header = (props) => {
           {currentUser && (
             <ul>
               <li>
-                <span onClick={() => auth.signOut()}>LogOut</span>
+                <Link to="/dashboard">My Account</Link>
+              </li>
+              <li>
+                <span
+                  onClick={() => {
+                    auth.signOut();
+                  }}
+                >
+                  LogOut
+                </span>
               </li>
             </ul>
           )}
@@ -48,8 +58,8 @@ Header.defaultProps = {
 };
 
 // ({user}) = destructure from redux rootReducer state object
-const mapStateToProps = ({user}) => ({
-  currentUser: user.currentUser
-})
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
 
 export default connect(mapStateToProps, null)(Header);
