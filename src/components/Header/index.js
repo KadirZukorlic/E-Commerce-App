@@ -1,12 +1,11 @@
-import React from "react";
-import { Redirect } from "react-router";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { auth } from "./../../firebase/utils";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { auth } from './../../firebase/utils';
 
-import Logo from "./../../assets/phoenix-logo.png";
+import Logo from './../../assets/phoenix-logo.png';
 
-import "./styles.scss";
+import './styles.scss';
 
 const Header = (props) => {
   const { currentUser } = props;
@@ -26,13 +25,7 @@ const Header = (props) => {
                 <Link to="/dashboard">My Account</Link>
               </li>
               <li>
-                <span
-                  onClick={() => {
-                    auth.signOut();
-                  }}
-                >
-                  LogOut
-                </span>
+                <span onClick={() => auth.signOut()}> LogOut</span>
               </li>
             </ul>
           )}

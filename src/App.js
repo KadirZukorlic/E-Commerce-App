@@ -1,24 +1,25 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { auth, handleUserProfile } from "./firebase/utils";
-import { setCurrentUser } from "./redux/User/user-actions";
+import React, { useEffect } from 'react';
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import { auth, handleUserProfile } from './firebase/utils';
+import { setCurrentUser } from './redux/User/user-actions';
 
 // hoc
-import WithAuth from "./hoc/withAuth";
+import WithAuth from './hoc/withAuth';
 
 // layouts
-import MainLayout from "./components/layouts/MainLayout";
-import HomepageLayout from "./components/layouts/HomepageLayout";
+import MainLayout from './components/layouts/MainLayout';
+import HomepageLayout from './components/layouts/HomepageLayout';
 
 // pages
-import Homepage from "././pages/Homepage";
-import Registration from "./pages/Registration";
-import Login from "./pages/Login";
-import Recovery from "./pages/Recovery";
-import Dashboard from "./pages/Dashboard";
+import Homepage from '././pages/Homepage';
+import Registration from './pages/Registration';
+import Login from './pages/Login';
+import Recovery from './pages/Recovery';
+import Dashboard from './pages/Dashboard';
 
-import "./default.scss";
+import './default.scss';
 
 const App = (props) => {
   const { setCurrentUser, currentUser } = props;
@@ -33,8 +34,8 @@ const App = (props) => {
             ...snapshot.data(),
           });
         });
-        setCurrentUser(userAuth); // userAuth is null == resets
       }
+      setCurrentUser(userAuth); // userAuth is null == resets
     });
     return () => {
       authListener();
@@ -56,7 +57,7 @@ const App = (props) => {
         <Route
           exact
           path="/registration"
-          render={() => (
+          render={() => currentUser ? <Redirect to="/" /> : (
             <MainLayout>
               <Registration />
             </MainLayout>
@@ -65,7 +66,7 @@ const App = (props) => {
         <Route
           exact
           path="/login"
-          render={() => (
+          render={() => currentUser ? <Redirect to="/" /> : (
             <MainLayout>
               <Login />
             </MainLayout>
