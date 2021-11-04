@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import {auth} from './../../firebase/utils';
+import React from "react";
+import { Redirect } from "react-router";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { auth } from "./../../firebase/utils";
 
-import Logo from './../../assets/phoenix-logo.png';
+import Logo from "./../../assets/phoenix-logo.png";
 
-import './styles.scss';
+import "./styles.scss";
 
 const Header = (props) => {
-  console.log(props, ' props');
   const { currentUser } = props;
-  console.log(currentUser, 'current user');
 
   return (
     <header className="header">
@@ -23,7 +23,16 @@ const Header = (props) => {
           {currentUser && (
             <ul>
               <li>
-                <span onClick={() => auth.signOut()}>LogOut</span>
+                <Link to="/dashboard">My Account</Link>
+              </li>
+              <li>
+                <span
+                  onClick={() => {
+                    auth.signOut();
+                  }}
+                >
+                  LogOut
+                </span>
               </li>
             </ul>
           )}
@@ -48,4 +57,9 @@ Header.defaultProps = {
   currentUser: null,
 };
 
-export default Header;
+// ({user}) = destructure from redux rootReducer state object
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
+export default connect(mapStateToProps, null)(Header);
