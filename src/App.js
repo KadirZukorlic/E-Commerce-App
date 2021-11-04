@@ -20,8 +20,6 @@ import Dashboard from "./pages/Dashboard";
 
 import "./default.scss";
 
-//npm install redux react-redux redux-logger za kuci
-
 const App = (props) => {
   const { setCurrentUser, currentUser } = props;
 
