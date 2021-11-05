@@ -23,8 +23,6 @@ export const handleUserProfile = async (userAuth, additionalData) => {
 
   if (!snapshot.exists) {
     const { displayName, email } = userAuth;
-    console.log(displayName, "display name");
-
     const timestamp = new Date();
 
     try {
