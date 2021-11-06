@@ -1,15 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { auth } from './../../firebase/utils';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { auth } from "./../../firebase/utils";
 
-import Logo from './../../assets/phoenix-logo.png';
+import Logo from "./../../assets/phoenix-logo.png";
 
-import './styles.scss';
+import "./styles.scss";
+
+// const mapState = ({ user }) => ({
+//   currentUser: user.currentUser,
+// });
+
+
+const mapState = ({user}) => {
+  return {
+    currentUser: user.currentUser
+  }
+}
 
 const Header = (props) => {
-  const { currentUser } = props;
+  const { currentUser } = useSelector(mapState);
 
+  console.log(currentUser, '------------TRENUTNI USER')
   return (
     <header className="header">
       <div className="wrap">
@@ -51,8 +63,5 @@ Header.defaultProps = {
 };
 
 // ({user}) = destructure from redux rootReducer state object
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
-});
 
-export default connect(mapStateToProps, null)(Header);
+export default Header;

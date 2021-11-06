@@ -37,7 +37,7 @@ const SignUp = (props) => {
       const { user } = auth.createUserWithEmailAndPassword(email, password);
       await handleUserProfile(user, { displayName });
       resetForm();
-      props.history.push('/')
+      props.history.push("/");
     } catch (error) {
       console.log(error);
     }
