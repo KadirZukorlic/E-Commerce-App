@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { signInUser } from './../../redux/User/user-actions';
 
 import Button from './../Forms/Button/index';
-import { signInWithGoogle, auth } from './../../firebase/utils';
+import { signInWithGoogle } from './../../firebase/utils';
 import AuthWrapper from '../AuthWrapper';
 
 import FormInput from '../Forms/FormInput';
