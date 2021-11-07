@@ -35,9 +35,9 @@ const SignIn = (props) => {
     setPassword('');
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await dispatch(signInUser({ email, password }));
+     dispatch(signInUser({ email, password }));
   };
 
   const configAuthWrapper = {
