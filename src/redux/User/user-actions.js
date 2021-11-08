@@ -1,10 +1,14 @@
-import userTypes from './user-types';
-import { auth, handleUserProfile } from '../../firebase/utils';
+import userTypes from "./user-types";
+import { auth, handleUserProfile, GoogleProvider } from "../../firebase/utils";
 
 export const setCurrentUser = (user) => ({
   type: userTypes.SET_CURRENT_USER,
   payload: user,
 });
+
+export const resetAllAuthForms = () => ({
+  type: userTypes.RESET_AUTH_FORMS
+})
 
 export const signInUser =
   ({ email, password }) =>
@@ -48,7 +52,7 @@ export const resetPassword =
   ({ email }) =>
   async (dispatch) => {
     const config = {
-      url: 'http://localhost:3000/login',
+      url: "http://localhost:3000/login",
     };
 
     try {
@@ -61,7 +65,7 @@ export const resetPassword =
           });
         })
         .catch(() => {
-          const err= [
+          const err = [
             "Couldn't find an email, please check your Email Address",
           ];
 
@@ -74,3 +78,16 @@ export const resetPassword =
       console.log(error);
     }
   };
+
+export const signInWithGoogle = () => async (dispatch) => {
+  try {
+    await auth.signInWithPopup(GoogleProvider).then(() => {
+      dispatch({
+        type: userTypes.SIGN_IN_SUCCESS,
+        payload: true,
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
