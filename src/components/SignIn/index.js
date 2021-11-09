@@ -11,24 +11,23 @@ import FormInput from '../Forms/FormInput';
 import './styles.scss';
 
 const mapState = ({ user }) => ({
-  signInSuccess: user.signInSuccess,
+  currentUser: user.currentUser,
 });
 
 const SignIn = (props) => {
   const dispatch = useDispatch();
-  const { signInSuccess } = useSelector(mapState);
+  const { currentUser } = useSelector(mapState);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  console.log(signInSuccess);
 
   useEffect(() => {
-    if (signInSuccess) {
+    if (currentUser) {
       resetForm();
       dispatch(resetAllAuthForms())
       props.history.push('/');
     }
-  }, [signInSuccess]);
+  }, [currentUser]);
 
   const resetForm = () => {
     setEmail('');
