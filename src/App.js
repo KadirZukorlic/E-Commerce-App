@@ -29,25 +29,12 @@ const App = props => {
   const dispatch = useDispatch();
   const {currentUser} = useSelector(mapState)
 
-  useEffect(() => {
-    const authListener = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await handleUserProfile(userAuth);
-        userRef.onSnapshot((snapshot) => {
-          dispatch(
-            setCurrentUser({
-              id: snapshot.id,
-              ...snapshot.data(),
-            })
-          );
-        });
-      }
-      dispatch(setCurrentUser(userAuth)); // userAuth is null == resets
-    });
-    return () => {
-      authListener();
-    };
-  }, []);
+  // useEffect(() => {
+
+  //   return () => {
+  //     authListener();
+  //   };
+  // }, []);
 
   return (
     <div className="App">
