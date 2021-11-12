@@ -1,34 +1,19 @@
-import userTypes from "./user-types";
-import { auth, handleUserProfile, GoogleProvider } from "../../firebase/utils";
+import userTypes from './user-types';
+import { auth, handleUserProfile, GoogleProvider } from '../../firebase/utils';
 
-export const emailSignInStart = userCredentials => ({
+export const emailSignInStart = (userCredentials) => ({
   type: userTypes.EMAIL_SIGN_IN_START,
-  payload: userCredentials
-})
-
-export const signInSuccess = user => ({
-  type: userTypes.SIGN_IN_SUCCESS,
-  payload: user
-})
-
-export const checkUserSession = () => ({
-  type: userTypes
+  payload: userCredentials,
 });
 
+export const signInSuccess = (user) => ({
+  type: userTypes.SIGN_IN_SUCCESS,
+  payload: user,
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+export const checkUserSession = () => ({
+  type: userTypes.CHECK_USER_SESSION,
+});
 
 export const setCurrentUser = (user) => ({
   type: userTypes.SET_CURRENT_USER,
@@ -36,8 +21,8 @@ export const setCurrentUser = (user) => ({
 });
 
 export const resetAllAuthForms = () => ({
-  type: userTypes.RESET_AUTH_FORMS
-})
+  type: userTypes.RESET_AUTH_FORMS,
+});
 
 // export const signInUser =
 //   ({ email, password }) =>
@@ -73,7 +58,7 @@ export const resetPassword =
   ({ email }) =>
   async (dispatch) => {
     const config = {
-      url: "http://localhost:3000/login",
+      url: 'http://localhost:3000/login',
     };
 
     try {
