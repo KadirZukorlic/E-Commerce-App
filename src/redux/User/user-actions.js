@@ -1,5 +1,4 @@
-import userTypes from './user-types';
-import { auth, handleUserProfile, GoogleProvider } from '../../firebase/utils';
+import userTypes from "./user-types";
 
 export const emailSignInStart = (userCredentials) => ({
   type: userTypes.EMAIL_SIGN_IN_START,
@@ -45,8 +44,13 @@ export const resetPasswordSuccess = () => ({
 
 export const resetUserState = () => ({
   type: userTypes.RESET_USER_STATE,
-  // payload:
-})
+});
+
+export const googleSignInStart = () => ({
+  type: userTypes.GOOGLE_SIGN_IN_START,
+});
+
+
 
 
 
@@ -99,14 +103,5 @@ export const resetPassword =
   async (dispatch) => {};
 
 export const signInWithGoogle = () => async (dispatch) => {
-  try {
-    await auth.signInWithPopup(GoogleProvider).then(() => {
-      dispatch({
-        type: userTypes.SIGN_IN_SUCCESS,
-        payload: true,
-      });
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  
 };
