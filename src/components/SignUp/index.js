@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpUserStart } from './../../redux/User/user-actions';
 
@@ -16,13 +16,15 @@ const mapState = ({ user }) => ({
 });
 
 const SignUp = (props) => {
+  const dispatch = useDispatch();
+  const history = useHistory()
+  
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const dispatch = useDispatch();
   const { currentUser, userErr } = useSelector(mapState);
 
   const resetForm = () => {
@@ -36,7 +38,7 @@ const SignUp = (props) => {
   useEffect(() => {
     if (currentUser) {
       resetForm();
-      props.history.push('/');
+      history.push('/');
     }
   }, [currentUser]);
 
@@ -111,4 +113,4 @@ const SignUp = (props) => {
   );
 };
 
-export default withRouter(SignUp);
+export default SignUp;

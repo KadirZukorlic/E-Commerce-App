@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { resetPasswordStart, resetUserState } from '../../redux/User/user-actions';
@@ -16,6 +16,7 @@ const mapState = ({ user }) => ({
 });
 
 const EmailPassword = (props) => {
+  const history = useHistory()
   const [email, setEmail] = useState('');
   const [error, setError] = useState([]);
 
@@ -30,7 +31,7 @@ const EmailPassword = (props) => {
   useEffect(() => {
     if (resetPasswordSuccess) {
       dispatch(resetUserState())
-      props.history.push('/login');
+      history.push('/login');
     }
   }, [resetPasswordSuccess]);
 
@@ -74,4 +75,4 @@ const EmailPassword = (props) => {
   );
 };
 
-export default withRouter(EmailPassword);
+export default EmailPassword;

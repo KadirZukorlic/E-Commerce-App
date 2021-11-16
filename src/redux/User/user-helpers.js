@@ -1,5 +1,4 @@
 import { auth } from './../../firebase/utils';
-import userTypes from './user-types';
 
 export const handleResetPasswordAPI = (email) => {
   const config = {

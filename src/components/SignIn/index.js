@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   emailSignInStart,
   googleSignInStart,
@@ -19,6 +19,7 @@ const mapState = ({ user }) => ({
 });
 
 const SignIn = (props) => {
+  const history = useHistory()
   const dispatch = useDispatch();
   const { currentUser } = useSelector(mapState);
   const [email, setEmail] = useState("");
@@ -27,7 +28,7 @@ const SignIn = (props) => {
   useEffect(() => {
     if (currentUser) {
       resetForm();
-      props.history.push("/");
+      history.push("/");
     }
   }, [currentUser]);
 
@@ -86,4 +87,4 @@ const SignIn = (props) => {
   );
 };
 
-export default withRouter(SignIn);
+export default SignIn;
