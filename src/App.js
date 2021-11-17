@@ -1,23 +1,28 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
-import { checkUserSession } from './redux/User/user-actions';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Switch, Route } from "react-router-dom";
+import { checkUserSession } from "./redux/User/user-actions";
+
+// components
+import AdminToolbar from "./components/AdminToolbar";
 
 // hoc
-import WithAuth from './hoc/withAuth';
+import WithAuth from "./hoc/withAuth";
+import WithAdminAuth from "./hoc/withAdminAuth";
 
 // layouts
-import MainLayout from './components/layouts/MainLayout';
-import HomepageLayout from './components/layouts/HomepageLayout';
+import MainLayout from "./components/layouts/MainLayout";
+import HomepageLayout from "./components/layouts/HomepageLayout";
 
 // pages
-import Homepage from '././pages/Homepage';
-import Registration from './pages/Registration';
-import Login from './pages/Login';
-import Recovery from './pages/Recovery';
-import Dashboard from './pages/Dashboard';
+import Admin from "./pages/Admin";
+import Homepage from "././pages/Homepage";
+import Registration from "./pages/Registration";
+import Login from "./pages/Login";
+import Recovery from "./pages/Recovery";
+import Dashboard from "./pages/Dashboard";
 
-import './default.scss';
+import "./default.scss";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -28,6 +33,7 @@ const App = (props) => {
 
   return (
     <div className="App">
+      <AdminToolbar />
       <Switch>
         <Route
           exact
@@ -75,6 +81,18 @@ const App = (props) => {
                 <Dashboard />
               </MainLayout>
             </WithAuth>
+          )}
+        />
+
+        <Route
+          exact
+          path="/admin"
+          render={() => (
+            <WithAdminAuth>
+              <MainLayout>
+                <Admin />
+              </MainLayout>
+            </WithAdminAuth>
           )}
         />
       </Switch>

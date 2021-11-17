@@ -19,15 +19,18 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
   const userRef = firestore.doc(`users/${uid}`);
   const snapshot = await userRef.get();
 
-
+  // if user doesnt exist, we have to store information like bellow
+  // and to set it, and register that user
   if (!snapshot.exists) {
     const { displayName, email } = userAuth;
     const timestamp = new Date();
+    const userRoles = ['user'];
 
     try {
       await userRef.set({
         displayName,
         email,
+        userRoles,
         createdDate: timestamp,
         ...additionalData,
       });
