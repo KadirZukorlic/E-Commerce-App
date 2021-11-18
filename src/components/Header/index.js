@@ -25,7 +25,6 @@ const Header = (props) => {
     dispatch(signOutUserStart())
   }
 
-  console.log(currentUser, '------------TRENUTNI USER')
   return (
     <header className="header">
       <div className="wrap">
