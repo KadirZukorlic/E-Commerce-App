@@ -9,11 +9,10 @@ import VerticalNav from '../VerticalNav';
 import Header from '../Header';
 
 const AdminLayout = (props) => {
-    const dispatch = useDispatch();
-    const signOut = () => {
-        dispatch(signOutUserStart());
-    }
-
+  const dispatch = useDispatch();
+  const signOut = () => {
+    dispatch(signOutUserStart());
+  };
 
   return (
     <div className="adminLayout">

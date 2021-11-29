@@ -1,13 +1,20 @@
-import React, { Children } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import './styles.scss';
 
-const VerticalNav = () => {
+const mapState = ({user}) => ({
+    currentUser: user.currentUser
+})
+
+const VerticalNav = ({children}) => {
+    const {currentUser} = useSelector(mapState)
+
     return (
         <div className="verticalNav">
 
             <div className="menu">
-                {Children}
+                {children}
             </div>
             
         </div>
