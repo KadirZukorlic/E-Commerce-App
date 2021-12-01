@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import { addProductStart } from './../../redux/Products/products-actions';
+
 import Modal from './../../components/Modal';
 import FormInput from './../../components/Forms/FormInput';
 import FormSelect from './../../components/Forms/FormSelect';
@@ -7,6 +10,8 @@ import Button from './../../components/Forms/Button';
 import './styles.scss';
 
 const Admin = (props) => {
+  const dispatch = useDispatch();
+  
   const [hideModal, setHideModal] = useState(true);
   const [productCategory, setProductCategory] = useState('mens');
   const [productName, setProductName] = useState('');
@@ -22,6 +27,15 @@ const Admin = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    dispatch(
+      addProductStart({
+        productCategory,
+        productName,
+        productThumbnail,
+        productPrice
+    })
+    )
   };
 
   return (
@@ -51,21 +65,21 @@ const Admin = (props) => {
                   name: 'Womens',
                 },
               ]}
-              handleChange={(e) => setProductCategory(e.target.value)}
+              onChange={(e) => setProductCategory(e.target.value)}
             />
 
             <FormInput
               label="Name"
               type="text"
               value={productName}
-              handleChange={(e) => setProductName(e.target.value)}
+              onChange={(e) => setProductName(e.target.value)}
             />
 
             <FormInput
               label="Main image URL"
               type="url"
               value={productThumbnail}
-              handleChange={(e) => setProductThumbnail(e.target.value)}
+              onChange={(e) => setProductThumbnail(e.target.value)}
             />
 
             <FormInput

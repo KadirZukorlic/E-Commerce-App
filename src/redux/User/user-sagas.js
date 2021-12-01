@@ -109,7 +109,7 @@ export function* onResetPasswordStart() {
 export function* googleSignIn() {
   try {
     const { user } = yield auth.signInWithPopup(GoogleProvider);
-    yield getSnapshotFromUserAuth(user)
+    yield getSnapshotFromUserAuth(user);
   } catch (error) {
     console.log(error);
   }
