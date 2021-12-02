@@ -26,6 +26,18 @@ export function* onAddProductStart() {
   yield takeLatest(productsTypes.ADD_NEW_PRODUCT_START, addProduct);
 }
 
+export function* fetchProducts() {
+
+}
+
+export function* onFetchProductsStart() {
+  yield takeLatest(productsTypes.FETCH_PRODUCTS_START, fetchProducts)
+}
+
 export default function* productsSagas() {
-  yield all([call(onAddProductStart)]);
+  yield all([
+    call(onAddProductStart),
+    call(onFetchProductsStart),
+  
+  ]);
 }

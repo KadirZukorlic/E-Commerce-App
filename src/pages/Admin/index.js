@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'
-import { addProductStart } from './../../redux/Products/products-actions';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { addProductStart, fetchProducsStart } from './../../redux/Products/products-actions';
 
 import Modal from './../../components/Modal';
 import FormInput from './../../components/Forms/FormInput';
@@ -9,14 +9,26 @@ import Button from './../../components/Forms/Button';
 
 import './styles.scss';
 
+const mapState = ({productsData}) => ({
+  products: productsData.products
+})
+
 const Admin = (props) => {
+  const {products} = useSelector(mapState)
+
   const dispatch = useDispatch();
-  
   const [hideModal, setHideModal] = useState(true);
   const [productCategory, setProductCategory] = useState('mens');
   const [productName, setProductName] = useState('');
   const [productThumbnail, setProductThumbnail] = useState('');
   const [productPrice, setProductPrice] = useState(0);
+
+  useEffect(() => {
+    dispatch(
+      fetchProducsStart()
+      );
+    
+  }, [])
 
   const toggleModal = () => setHideModal(!hideModal);
 
