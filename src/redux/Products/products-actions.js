@@ -5,6 +5,12 @@ export const addProductStart = productData => ({
     payload: productData
 })
 
+
 export const fetchProducsStart = () => ({
-    type: productsTypes.SET_PRODUCTS
+    type: productsTypes.FETCH_PRODUCTS_START
+})
+
+export const setProducts = products => ({
+    type: productsTypes.SET_PRODUCTS,
+    payload: products
 })

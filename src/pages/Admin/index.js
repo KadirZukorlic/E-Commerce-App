@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { addProductStart, fetchProducsStart } from './../../redux/Products/products-actions';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addProductStart,
+  fetchProducsStart,
+} from './../../redux/Products/products-actions';
 
 import Modal from './../../components/Modal';
 import FormInput from './../../components/Forms/FormInput';
@@ -9,12 +12,12 @@ import Button from './../../components/Forms/Button';
 
 import './styles.scss';
 
-const mapState = ({productsData}) => ({
-  products: productsData.products
-})
+const mapState = ({ productsData }) => ({
+  products: productsData.products,
+});
 
 const Admin = (props) => {
-  const {products} = useSelector(mapState)
+  const { products } = useSelector(mapState);
 
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
@@ -24,11 +27,8 @@ const Admin = (props) => {
   const [productPrice, setProductPrice] = useState(0);
 
   useEffect(() => {
-    dispatch(
-      fetchProducsStart()
-      );
-    
-  }, [])
+    dispatch(fetchProducsStart());
+  }, []);
 
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -45,9 +45,9 @@ const Admin = (props) => {
         productCategory,
         productName,
         productThumbnail,
-        productPrice
-    })
-    )
+        productPrice,
+      })
+    );
   };
 
   return (
@@ -108,6 +108,50 @@ const Admin = (props) => {
           </form>
         </div>
       </Modal>
+
+      <div className="manageProducts">
+
+        <table border="0" cellPadding="0" cellSpacing="">
+          <tbody>
+            <tr>
+              <th>
+              <h1>Manage Products</h1>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <table border="0" cellPadding="10" cellSpacing="">
+                  <tbody>
+                    {products.map((product, index) => {
+                      const {
+                        productName,
+                        productThumbnail,
+                        productPrice,
+                      } = product
+
+                      return (
+                        <tr>
+                          <td>
+                        <img className="thumb" src={productThumbnail} alt="parfem" />
+                          </td>
+                          <td>
+                            {productName}
+                          </td>
+                          <td>
+                            ${productPrice}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        {products.map((product) => {})}
+      </div>
     </div>
   );
 };

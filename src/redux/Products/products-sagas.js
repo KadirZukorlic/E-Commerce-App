@@ -1,6 +1,7 @@
 import { auth } from "./../../firebase/utils";
 import { takeLatest, put, all, call } from "redux-saga/effects";
-import { handleAddProduct } from "./products-helpers";
+import {setProducts} from './products-actions';
+import { handleAddProduct, handleFetchProducts } from "./products-helpers";
 import productsTypes from "./products-types";
 
 export function* addProduct({
@@ -27,7 +28,14 @@ export function* onAddProductStart() {
 }
 
 export function* fetchProducts() {
-
+  try {
+    const products = yield handleFetchProducts();
+    yield put(
+      setProducts(products)
+    )
+  } catch(err) {
+    console.log(err)
+  }
 }
 
 export function* onFetchProductsStart() {
