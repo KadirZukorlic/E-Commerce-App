@@ -3,14 +3,18 @@ import productsTypes from "./products-types";
 export const addProductStart = productData => ({
     type: productsTypes.ADD_NEW_PRODUCT_START,
     payload: productData
-})
+});
 
-
-export const fetchProducsStart = () => ({
+export const fetchProductsStart = () => ({
     type: productsTypes.FETCH_PRODUCTS_START
-})
+});
 
-export const setProducts = products => ({
+export const setProducts = (products) => ({
     type: productsTypes.SET_PRODUCTS,
     payload: products
+});
+
+export const deleteProductStart = (productId) => ({
+    type: productsTypes.DELETE_PRODUCT_START,
+    payload: productId
 })
