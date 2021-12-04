@@ -18,6 +18,8 @@ import HomepageLayout from './components/layouts/HomepageLayout';
 // pages
 import Admin from './pages/Admin';
 import Homepage from '././pages/Homepage';
+import Search from './pages/Search';
+import ProductResult from './components/ProductResult';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
 import Recovery from './pages/Recovery';
@@ -45,6 +47,17 @@ const App = (props) => {
             </HomepageLayout>
           )}
         />
+
+        <Route
+          exact
+          path="/search"
+          render={() => (
+            <MainLayout>
+              <Search />
+            </MainLayout>
+          )}
+        />
+
         <Route
           exact
           path="/registration"
