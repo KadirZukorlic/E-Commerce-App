@@ -74,6 +74,7 @@ const Admin = (props) => {
       <Modal {...configModal}>
         <div className="addNewProductForm">
           <form onSubmit={handleSubmit}>
+            
             <h2>Add new product</h2>
 
             <FormSelect

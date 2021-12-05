@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductsStart } from '../../redux/Products/products-actions';
+import Product from './Product';
 
 import './styles.scss';
 
@@ -26,20 +27,34 @@ const ProductResult = () => {
     );
   }
 
-    return (
-        <div className="products">
-            {products.map( (product, pos) => {
-                const {productThumbnail, productName, productPrice} = product;
-                if (!productThumbnail || !productName || typeof productPrice === 'undefined') return null;
-                return (
-                    <div key={pos}>
-                        {productName}
-                        {productPrice}
-                    </div>
-                );
-            })}
-        </div>
-    )
+  return (
+    <div className="products">
+      <h1>Browse Products</h1>
+
+    <div className="productResults">
+    {products.map((product, pos) => {
+        const { productThumbnail, productName, productPrice } = product;
+        if (
+          !productThumbnail ||
+          !productName ||
+          typeof productPrice === 'undefined'
+        )
+          return null;
+
+          const configProduct = {
+            productThumbnail,
+            productName,
+            productPrice
+          }
+
+        return (
+         <Product {...configProduct}/>
+        );
+      })}
+    </div>
+      
+    </div>
+  );
 };
 
 export default ProductResult;
