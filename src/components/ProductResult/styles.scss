@@ -5,16 +5,16 @@
     margin: 2rem 0;
 
     .productResults {
+        display: flex;
+        flex-wrap: wrap;
         margin: 0 -10px;
     }
 }
 
 .product {
     width: 33.33333333333333%; // num of items in row / num of columns / items in row * 100 = calculate width of one item in a column
-    height: 45.0rem;
     margin: 0 auto 2rem;
     padding: 0 10px;
-    float: left;
 
     .thumb {
         display: block;
@@ -23,6 +23,7 @@
         img {
             display: block;
             width: 100%;
+            // height: 40rem;
             margin: 0;
         }
     }
