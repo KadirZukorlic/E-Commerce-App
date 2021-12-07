@@ -16,11 +16,11 @@ const ProductResult = () => {
   const dispatch = useDispatch();
   const { products } = useSelector(mapState);
   const history = useHistory()
-  const { filterType } = useParams;
+  const { filterType } = useParams();
 
   useEffect(() => {
-    dispatch(fetchProductsStart());
-  }, []);
+    dispatch(fetchProductsStart({ filterType }));
+  }, [ filterType ]);
 
   const handleFilter = e => {
     const nextFilter = e.target.value;
@@ -52,7 +52,7 @@ const ProductResult = () => {
       value: 'womens'
     }
   ],
-  handleChange: handleFilter,
+  onChange: handleFilter,
   }
 
   return (

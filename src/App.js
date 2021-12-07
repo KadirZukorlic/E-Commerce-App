@@ -58,7 +58,7 @@ const App = (props) => {
           )}
         />
 
-<Route
+        <Route
           exact
           path="/search/:filterType"
           render={() => (
