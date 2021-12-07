@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom'
 import { fetchProductsStart } from '../../redux/Products/products-actions';
 
+//components
 import Product from './Product';
 import FormSelect from '../Forms/FormSelect';
+import LoadMore from '../LoadMore';
 
 import './styles.scss';
 
@@ -14,9 +16,11 @@ const mapState = ({ productsData }) => ({
 
 const ProductResult = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector(mapState);
   const history = useHistory()
+  const { products } = useSelector(mapState);
   const { filterType } = useParams();
+
+  const { data, queryDoc } = products;
 
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));
@@ -27,9 +31,9 @@ const ProductResult = () => {
     history.push(`/search/${nextFilter}`)
   }
 
-  if (!Array.isArray(products)) return null;
+  if (!Array.isArray(data)) return null;
 
-  if (products.length < 1) {
+  if (data.length < 1) {
     return (
       <div className="products">
         <p>No search results.</p>
@@ -52,7 +56,20 @@ const ProductResult = () => {
       value: 'womens'
     }
   ],
-  onChange: handleFilter,
+  handleChange: handleFilter,
+  }
+
+  const handleLoadMore = () => {
+    dispatch(fetchProductsStart({
+      filterType,
+      startAfterDoc: queryDoc,
+    }))
+
+    console.log('load more')
+  }
+
+  const configLoadMore = {
+    onLoadMoreEvt: handleLoadMore,
   }
 
   return (
@@ -62,7 +79,7 @@ const ProductResult = () => {
       <FormSelect {...configFilters} />
 
     <div className="productResults">
-    {products.map((product, pos) => {
+    {data.map((product, pos) => {
         const { productThumbnail, productName, productPrice } = product;
         if (
           !productThumbnail ||
@@ -82,7 +99,8 @@ const ProductResult = () => {
         );
       })}
     </div>
-      
+    
+      <LoadMore {...configLoadMore}/>
     </div>
   );
 };

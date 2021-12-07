@@ -30,8 +30,6 @@ const Admin = (props) => {
     dispatch(fetchProductsStart());
   }, []);
 
-  console.log('products', products)
-
   const toggleModal = () => setHideModal(!hideModal);
 
   const configModal = {
