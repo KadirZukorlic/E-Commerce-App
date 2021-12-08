@@ -15,7 +15,7 @@ export const handleAddProduct = (product) => {
   });
 };
 
-export const handleFetchProducts = ({ filterType, startAfterDoc }) => {
+export const handleFetchProducts = ({ filterType, startAfterDoc, persistProducts=[] }) => {
   return new Promise((resolve, reject) => {
     const pageSize = 6;
 
@@ -30,6 +30,7 @@ export const handleFetchProducts = ({ filterType, startAfterDoc }) => {
         const totalCount = snapshot.size
 
         const data = [
+          ...persistProducts,
           ...snapshot.docs.map(doc => {
             return {
               ...doc.data(),

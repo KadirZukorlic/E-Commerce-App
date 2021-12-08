@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addProductStart,
   fetchProductsStart,
-  deleteProductStart
+  deleteProductStart,
 } from "./../../redux/Products/products-actions";
 
 import Modal from "./../../components/Modal";
 import FormInput from "./../../components/Forms/FormInput";
 import FormSelect from "./../../components/Forms/FormSelect";
 import Button from "./../../components/Forms/Button";
+import LoadMore from "../../components/LoadMore";
 
 import "./styles.scss";
 
@@ -19,6 +20,8 @@ const mapState = ({ productsData }) => ({
 
 const Admin = (props) => {
   const { products } = useSelector(mapState);
+  const { data, queryDoc, isLastPage } = products;
+
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
   const [productCategory, setProductCategory] = useState("mens");
@@ -38,12 +41,12 @@ const Admin = (props) => {
   };
 
   const resetForm = () => {
-    setHideModal(true)
-    setProductCategory('mens')
-    setProductName('');
-    setProductThumbnail('');
+    setHideModal(true);
+    setProductCategory("mens");
+    setProductName("");
+    setProductThumbnail("");
     setProductPrice(0);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,6 +62,17 @@ const Admin = (props) => {
     resetForm();
   };
 
+  const handleLoadMore = () => {
+    dispatch(fetchProductsStart({
+      startAfterDoc: queryDoc,
+      persistProducts: data,
+    }));
+  };
+
+  const configLoadMore = {
+    onLoadMoreEvt: handleLoadMore,
+  };
+
   return (
     <div className="admin">
       <div className="callToActions">
@@ -72,7 +86,6 @@ const Admin = (props) => {
       <Modal {...configModal}>
         <div className="addNewProductForm">
           <form onSubmit={handleSubmit}>
-            
             <h2>Add new product</h2>
 
             <FormSelect
@@ -129,31 +142,62 @@ const Admin = (props) => {
             </tr>
             <tr>
               <td>
-                <table className="results" border="0" cellPadding="10" cellSpacing="0">
+                <table
+                  className="results"
+                  border="0"
+                  cellPadding="10"
+                  cellSpacing="0"
+                >
                   <tbody>
-                    {products.map((product, index) => {
-                      const { productName, productThumbnail, productPrice, documentID } =
-                        product;
+                    {Array.isArray(data) &&
+                      data.length > 0 &&
+                      data.map((product, index) => {
+                        const {
+                          productName,
+                          productThumbnail,
+                          productPrice,
+                          documentID,
+                        } = product;
 
-                      return (
-                        <tr>
-                          <td>
-                            <img
-                              className="thumb"
-                              src={productThumbnail}
-                              alt="parfem"
-                            />
-                          </td>
-                          <td>{productName}</td>
-                          <td>${productPrice}</td>
-                          <td>
-                            <Button onClick={() => dispatch(
-                              deleteProductStart(documentID)
-                            )}>Delete</Button>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                        return (
+                          <tr>
+                            <td>
+                              <img
+                                className="thumb"
+                                src={productThumbnail}
+                                alt="parfem"
+                              />
+                            </td>
+                            <td>{productName}</td>
+                            <td>${productPrice}</td>
+                            <td>
+                              <Button
+                                onClick={() =>
+                                  dispatch(deleteProductStart(documentID))
+                                }
+                              >
+                                Delete
+                              </Button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <table border="0" cellPadding="10" cellSpacing="0">
+                  <tbody>
+                    <tr>
+                      <td>
+                        {!isLastPage && <LoadMore {...configLoadMore} />}
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </td>

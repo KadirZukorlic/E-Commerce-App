@@ -20,7 +20,7 @@ const ProductResult = () => {
   const { products } = useSelector(mapState);
   const { filterType } = useParams();
 
-  const { data, queryDoc } = products;
+  const { data, queryDoc, isLastPage } = products;
 
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));
@@ -63,6 +63,7 @@ const ProductResult = () => {
     dispatch(fetchProductsStart({
       filterType,
       startAfterDoc: queryDoc,
+      persistProducts: data
     }))
 
     console.log('load more')
@@ -99,8 +100,7 @@ const ProductResult = () => {
         );
       })}
     </div>
-    
-      <LoadMore {...configLoadMore}/>
+    {!isLastPage && <LoadMore {...configLoadMore}/> }
     </div>
   );
 };
