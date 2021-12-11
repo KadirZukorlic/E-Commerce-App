@@ -28,7 +28,7 @@ export function* getSnapshotFromUserAuth(user, additionalData = {}) {
       })
     );
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
@@ -37,7 +37,7 @@ export function* emailSignIn({ payload: { email, password } }) {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
 
@@ -85,7 +85,7 @@ export function* signUpStart({
     const additionalData = { displayName };
     yield getSnapshotFromUserAuth(user, additionalData);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
@@ -111,7 +111,7 @@ export function* googleSignIn() {
     const { user } = yield auth.signInWithPopup(GoogleProvider);
     yield getSnapshotFromUserAuth(user);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
 

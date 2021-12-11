@@ -24,7 +24,7 @@ export function* addProduct({
     )
 
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
@@ -39,7 +39,7 @@ export function* fetchProducts({ payload }) {
       setProducts(products)
     )
   } catch(err) {
-    console.log(err)
+    // console.log(err)
   }
 }
 
@@ -55,7 +55,7 @@ export function* deleteProduct({payload}) {
     );
 
    } catch (err) {
-     console.log(err)
+    //  console.log(err)
    }
 }
 

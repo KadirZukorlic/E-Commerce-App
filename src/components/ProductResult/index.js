@@ -66,7 +66,6 @@ const ProductResult = () => {
       persistProducts: data
     }))
 
-    console.log('load more')
   }
 
   const configLoadMore = {
