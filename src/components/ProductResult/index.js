@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom'
 import { fetchProductsStart } from '../../redux/Products/products-actions';
+import { addProduct } from '../../redux/Cart/cart-actions';
 
 //components
 import Product from './Product';
@@ -65,7 +66,18 @@ const ProductResult = () => {
       startAfterDoc: queryDoc,
       persistProducts: data
     }))
+  }
 
+  
+  const handleAddToCart = (id) => {
+
+    const product = data.map((product) => {
+      const {documentID} = product
+      if (id === documentID) {
+        return product;
+      }
+      console.log(product, 'CLICKED PRODUCT')
+    })
   }
 
   const configLoadMore = {
@@ -93,7 +105,7 @@ const ProductResult = () => {
           }
 
         return (
-         <Product {...configProduct}/>
+         <Product {...configProduct} addToCart={handleAddToCart}/>
         );
       })}
     </div>
