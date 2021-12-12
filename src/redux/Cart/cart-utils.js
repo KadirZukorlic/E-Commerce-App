@@ -8,8 +8,8 @@ export const existingCartItem = ({
 }
 
 export const handleAddToCart = ({
-    prevCartItems,
-    nextCartItem
+    prevCartItems, //state.cartItems -- array with cart items
+    nextCartItem // action.payload -- payload
 }) => {
     const quantitiyIncrement = 1;
     const cartItemExists = existingCartItem({ prevCartItems, nextCartItem});
@@ -18,7 +18,7 @@ export const handleAddToCart = ({
         return prevCartItems.map(cartItem => 
             cartItem.documentID === nextCartItem.documentID ? {
                 ...cartItem,
-                quantity: cartItem.quantity + quantitiyIncrement
+                quantity: cartItem.quantity + quantitiyIncrement 
             } : cartItem
         )
     }
