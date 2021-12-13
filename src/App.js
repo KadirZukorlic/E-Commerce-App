@@ -24,6 +24,7 @@ import Login from './pages/Login';
 import Recovery from './pages/Recovery';
 import Dashboard from './pages/Dashboard';
 import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart'
 
 import './default.scss';
 
@@ -77,6 +78,16 @@ const App = (props) => {
             </MainLayout>
           )}
         />
+
+        <Route
+          exact
+          path="/cart"
+          render={() => (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          )}
+        />  
 
 
         <Route
