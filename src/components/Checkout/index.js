@@ -50,6 +50,7 @@ const Checkout = ({}) => {
             <table border="0" cellSpacing="0" cellPadding="0">
               <tbody>
                 {cartItems.map((item, pos) => {
+                  console.log(item, 'ITEM PRODUCT')
                   return (
                     <tr key={pos}>
                       <td><Item {...item}/></td>

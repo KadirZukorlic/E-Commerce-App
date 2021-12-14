@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { removeCartItem } from "../../../redux/Cart/cart-actions";
+import { removeCartItem, addProduct } from "../../../redux/Cart/cart-actions";
 
 const Item = (product) => {
   const dispatch = useDispatch()
@@ -9,6 +9,17 @@ const Item = (product) => {
 
     const handleRemoveCartItem = () => {
       dispatch(removeCartItem(product))
+    }
+
+    //IN THE JSX use -- handleRemoveCartItem(documentID)
+    // const handleRemoveCartItem = (documentID) => {
+    //   dispatch(removeCartItem({
+    //     documentID
+    //   }))
+    // }
+
+    const handleAddProduct = (product) => {
+      dispatch(addProduct(product))
     }
 
 
@@ -21,10 +32,16 @@ const Item = (product) => {
           </td>
           <td>{productName}</td>
           <td>
+            <span className="cartBtn">
+              {`< `}
+              </span>
             <span>{quantity}</span>
+            <span className="cartBtn" onClick={() => handleAddProduct(product)}>
+              {` >`}
+              </span>
           </td>
           <td>€{productPrice}</td>
-          <td align="center"> <span onClick={() => handleRemoveCartItem(product)}>X</span> </td>
+          <td align="center"> <span className="cartBtn" onClick={() => handleRemoveCartItem(product)}>X</span> </td>
         </tr>
       </tbody>
     </table>
