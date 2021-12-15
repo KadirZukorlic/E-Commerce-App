@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { removeCartItem, addProduct, reduceCartItem } from "../../../redux/Cart/cart-actions";
 
+
 const Item = (product) => {
   const dispatch = useDispatch()
   const { productName, productThumbnail, productPrice, quantity, documentID } =

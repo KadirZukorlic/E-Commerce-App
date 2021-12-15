@@ -48,7 +48,7 @@ export const handleReduceCartItem = ({
  if (existingCartItem.quantity === 1) {
   return prevCartItems.filter(
      (cartItem) => cartItem.documentID !== existingCartItem.documentID
-   ); //deletes cart item from cart 
+   ); //deletes cart item from cart when qty is 1 and reduce is clicked
  }
 
  return prevCartItems.map(cartItem =>
