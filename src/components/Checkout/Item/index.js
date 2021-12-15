@@ -1,25 +1,30 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { removeCartItem, addProduct } from "../../../redux/Cart/cart-actions";
+import { removeCartItem, addProduct, reduceCartItem } from "../../../redux/Cart/cart-actions";
 
 const Item = (product) => {
   const dispatch = useDispatch()
   const { productName, productThumbnail, productPrice, quantity, documentID } =
     product;
 
-    const handleRemoveCartItem = () => {
-      dispatch(removeCartItem(product))
-    }
-
-    //IN THE JSX use -- handleRemoveCartItem(documentID)
-    // const handleRemoveCartItem = (documentID) => {
-    //   dispatch(removeCartItem({
-    //     documentID
-    //   }))
+    // const handleRemoveCartItem = () => {
+    //   dispatch(removeCartItem(product))
     // }
+
+    
+    const handleRemoveCartItem = (documentID) => {
+      dispatch(removeCartItem({
+        documentID
+      }))
+    }
 
     const handleAddProduct = (product) => {
       dispatch(addProduct(product))
+    }
+
+    const handleReduceItem = (product) => {
+      console.log('reduce item')
+      dispatch(reduceCartItem(product))
     }
 
 
@@ -32,7 +37,7 @@ const Item = (product) => {
           </td>
           <td>{productName}</td>
           <td>
-            <span className="cartBtn">
+            <span onClick={() => handleReduceItem(product)} className="cartBtn">
               {`< `}
               </span>
             <span>{quantity}</span>
@@ -41,7 +46,7 @@ const Item = (product) => {
               </span>
           </td>
           <td>€{productPrice}</td>
-          <td align="center"> <span className="cartBtn" onClick={() => handleRemoveCartItem(product)}>X</span> </td>
+          <td align="center"> <span className="cartBtn" onClick={() => handleRemoveCartItem(documentID)}>X</span> </td>
         </tr>
       </tbody>
     </table>
