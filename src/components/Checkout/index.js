@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { selectCartItems, selectCartTotal } from "./../../redux/Cart/cart-selectors";
 import { createStructuredSelector } from "reselect";
 
+
 import Item from './Item';
 import Button from "../Forms/Button";
 
@@ -14,7 +15,7 @@ const mapState = createStructuredSelector({
   total: selectCartTotal,
 });
 
-const Checkout = ({}) => {
+const Checkout = () => {
   const history = useHistory()
   const { cartItems, total } = useSelector(mapState);
   
@@ -23,6 +24,7 @@ const Checkout = ({}) => {
   const errMsg = 'You have no items in Your cart.'
 
 //   if (!Array.isArray(cartItems) || cartItems.length < 1) return null;
+
 
   return (
     <div className="checkout">

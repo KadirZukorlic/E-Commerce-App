@@ -3,9 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   signOutUserStart,
-  signOutUserSuccess,
 } from '../../redux/User/user-actions';
-import { selectCartItemsCount } from './../../redux/Cart/cart-selectors'
+import { selectCartItemsCount } from './../../redux/Cart/cart-selectors';
 
 import Logo from './../../assets/phoenix-logo.png';
 import './styles.scss';
@@ -17,7 +16,7 @@ import './styles.scss';
 const mapState = (state) => {
   return {
     currentUser: state.user.currentUser,
-    totalNumCartItems: selectCartItemsCount(state)
+    totalNumCartItems: selectCartItemsCount(state),
   };
 };
 
@@ -63,16 +62,16 @@ const Header = (props) => {
                 <span onClick={() => signOut()}> LogOut</span>
               </li>,
             ]}
-          </ul>
 
-          {!currentUser && [
-            <li>
-              <Link to="/registration">Register</Link>
-            </li>,
-            <li>
-              <Link to="/login">Login</Link>
-            </li>,
-          ]}
+            {!currentUser && [
+              <li>
+                <Link to="/registration">Register</Link>
+              </li>,
+              <li>
+                <Link to="/login">Login</Link>
+              </li>,
+            ]}
+          </ul>
         </div>
       </div>
     </header>
