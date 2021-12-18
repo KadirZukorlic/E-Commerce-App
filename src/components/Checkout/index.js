@@ -17,6 +17,8 @@ const mapState = createStructuredSelector({
 const Checkout = ({}) => {
   const history = useHistory()
   const { cartItems, total } = useSelector(mapState);
+  
+  console.log(cartItems, 'CART ITEMS')
 
   const errMsg = 'You have no items in Your cart.'
 
@@ -68,7 +70,7 @@ const Checkout = ({}) => {
             <table align="right" border="0" cellSpacing="0" cellPading="10">
               <tr align="right">
                 <td>
-                  <h3>Total: {total}</h3>
+                  <h3>Total: €{total}</h3>
                 </td>
               </tr>
 
