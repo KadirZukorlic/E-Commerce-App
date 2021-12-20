@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   selectCartItems,
   selectCartTotal,
 } from "./../../redux/Cart/cart-selectors";
 import { createStructuredSelector } from "reselect";
-import { saveOrderHistory } from "./../../redux/Orders/orders-actions";
 
-import Item from "./Item";
+
+import Item from './Item';
 import Button from "../Forms/Button";
 
 import "./styles.scss";
@@ -18,11 +18,9 @@ const mapState = createStructuredSelector({
   total: selectCartTotal,
 });
 
-const Checkout = ({}) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
+const Checkout = () => {
+  const history = useHistory()
   const { cartItems, total } = useSelector(mapState);
-  const [order, setOrder] = useState({});
 
   console.log(cartItems, "CART ITEMS");
 
@@ -30,31 +28,6 @@ const Checkout = ({}) => {
 
   //   if (!Array.isArray(cartItems) || cartItems.length < 1) return null;
   
-  const configOrder = {
-    orderTotal: total,
-    orderItems: cartItems.map((item) => {
-      const {
-        documentID,
-        productThumbnail,
-        productName,
-        productPrice,
-        quantity,
-      } = item;
-
-      return {
-        documentID,
-        productThumbnail,
-        productName,
-        productPrice,
-        quantity,
-      };
-    }),
-  };
-
-  const handleSaveOrder = () => {
-    dispatch(saveOrderHistory(configOrder))
-  };
-
   return (
     <div className="checkout">
       <h1>Checkout</h1>
@@ -117,7 +90,7 @@ const Checkout = ({}) => {
                             </Button>
                           </td>
                           <td>
-                            <Button onClick={() => handleSaveOrder(configOrder)}>
+                            <Button>
                               Checkout
                             </Button>
                           </td>
