@@ -6,8 +6,8 @@ import ordersSagas from "./Orders/orders-sagas";
 
 export default function* rootSaga() {
   yield all([
-    call(ordersSagas),
     call(userSagas), 
     call(productsSagas),
+    call(ordersSagas),
     ]);
 }
