@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useSelector } from "react-redux";
 import {
   selectCartItems,
   selectCartTotal,
-} from './../../redux/Cart/cart-selectors';
-import { createStructuredSelector } from 'reselect';
+} from "./../../redux/Cart/cart-selectors";
+import { createStructuredSelector } from "reselect";
+
 
 import Item from './Item';
 import Button from '../Forms/Button';
@@ -22,38 +23,12 @@ const Checkout = () => {
   const history = useHistory();
   const { cartItems, total } = useSelector(mapState);
 
+  console.log(cartItems, "CART ITEMS");
 
-  console.log(cartItems, 'CART ITEMS');
-
-  const errMsg = 'You have no items in Your cart.';
+  const errMsg = "You have no items in Your cart.";
 
   //   if (!Array.isArray(cartItems) || cartItems.length < 1) return null;
-
-  // const handle = () => {
-  //   const configOrder = {
-  //     orderTotal: total,
-  //     orderItems: cartItems.map((item) => {
-  //       const {
-  //         documentID,
-  //         productThumbnail,
-  //         productName,
-  //         productPrice,
-  //         quantity,
-  //       } = item;
-  //       return {
-  //         documentID,
-  //         productThumbnail,
-  //         productName,
-  //         productPrice,
-  //         quantity,
-  //       };
-  //     }),
-  //   };
-  // }
- 
-    
-
-
+  
   return (
     <div className="checkout">
       <h1>Checkout</h1>
@@ -86,7 +61,7 @@ const Checkout = () => {
                 <table border="0" cellSpacing="0" cellPadding="0">
                   <tbody>
                     {cartItems.map((item, pos) => {
-                      console.log(item, 'ITEM PRODUCT');
+                      console.log(item, "ITEM PRODUCT");
                       return (
                         <tr key={pos}>
                           <td>
