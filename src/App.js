@@ -14,17 +14,18 @@ import WithAdminAuth from './hoc/withAdminAuth';
 import AdminLayout from './components/layouts/AdminLayout';
 import MainLayout from './components/layouts/MainLayout';
 import HomepageLayout from './components/layouts/HomepageLayout';
+import DashBoardLayout from './components/layouts/DashboardLayout';
 
 // pages
 import Admin from './pages/Admin';
+import Dashboard from './pages/Dashboard';
 import Homepage from '././pages/Homepage';
 import Search from './pages/Search';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
 import Recovery from './pages/Recovery';
-import Dashboard from './pages/Dashboard';
 import ProductDetails from './pages/ProductDetails';
-import Cart from './pages/Cart'
+import Cart from './pages/Cart';
 
 import './default.scss';
 
@@ -87,8 +88,7 @@ const App = (props) => {
               <Cart />
             </MainLayout>
           )}
-        />  
-
+        />
 
         <Route
           exact
@@ -115,6 +115,18 @@ const App = (props) => {
             <MainLayout>
               <Recovery />
             </MainLayout>
+          )}
+        />
+
+        <Route
+          exact
+          path="/dashboard"
+          render={() => (
+            <WithAuth>
+              <DashBoardLayout>
+                <Dashboard />
+              </DashBoardLayout>
+            </WithAuth>
           )}
         />
 
