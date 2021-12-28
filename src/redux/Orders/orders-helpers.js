@@ -29,11 +29,9 @@ export const handleGetUserOrderHistory = (uid) => {
               ...doc.data(),
               documentID: doc.id,
             };
-          }),
+          })
         ];
-        resolve({
-          data,
-        });
+        resolve({data});
       })
       .catch((err) => {
         reject(err);

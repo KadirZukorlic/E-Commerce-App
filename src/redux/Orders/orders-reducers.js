@@ -2,7 +2,7 @@ import ordersTypes from './orders-types';
 
 const INITIAL_STATE = {
   orderHistory: [],
-  order: {},
+  orderDetails: {},
 };
 
 const ordersReducer = (state = INITIAL_STATE, action) => {
@@ -15,7 +15,7 @@ const ordersReducer = (state = INITIAL_STATE, action) => {
     case ordersTypes.GET_USER_ORDER_HISTORY:
       return {
         ...state,
-        order: action.payload,
+        orderDetails: action.payload,
       };
 
     default:

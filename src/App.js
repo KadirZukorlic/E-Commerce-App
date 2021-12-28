@@ -1,40 +1,40 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
-import { checkUserSession } from './redux/User/user-actions';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Switch, Route } from "react-router-dom";
+import { checkUserSession } from "./redux/User/user-actions";
 
 // components
-import AdminToolbar from './components/AdminToolbar';
+import AdminToolbar from "./components/AdminToolbar";
 
 // hoc
-import WithAuth from './hoc/withAuth';
-import WithAdminAuth from './hoc/withAdminAuth';
+import WithAuth from "./hoc/withAuth";
+import WithAdminAuth from "./hoc/withAdminAuth";
 
 // layouts
-import AdminLayout from './components/layouts/AdminLayout';
-import MainLayout from './components/layouts/MainLayout';
-import HomepageLayout from './components/layouts/HomepageLayout';
-import DashBoardLayout from './components/layouts/DashboardLayout';
+import AdminLayout from "./components/layouts/AdminLayout";
+import MainLayout from "./components/layouts/MainLayout";
+import HomepageLayout from "./components/layouts/HomepageLayout";
+import DashBoardLayout from "./components/layouts/DashboardLayout";
 
 // pages
-import Admin from './pages/Admin';
-import Dashboard from './pages/Dashboard';
-import Homepage from '././pages/Homepage';
-import Search from './pages/Search';
-import Registration from './pages/Registration';
-import Login from './pages/Login';
-import Recovery from './pages/Recovery';
-import ProductDetails from './pages/ProductDetails';
-import Cart from './pages/Cart';
+import Admin from "./pages/Admin";
+import Dashboard from "./pages/Dashboard";
+import Homepage from "././pages/Homepage";
+import Search from "./pages/Search";
+import Registration from "./pages/Registration";
+import Login from "./pages/Login";
+import Recovery from "./pages/Recovery";
+import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 
-import './default.scss';
+import "./default.scss";
 
 const App = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(checkUserSession());
-  });
+  }, []);
 
   return (
     <div className="App">
@@ -126,18 +126,6 @@ const App = (props) => {
               <DashBoardLayout>
                 <Dashboard />
               </DashBoardLayout>
-            </WithAuth>
-          )}
-        />
-
-        <Route
-          exact
-          path="/dashboard"
-          render={() => (
-            <WithAuth>
-              <MainLayout>
-                <Dashboard />
-              </MainLayout>
             </WithAuth>
           )}
         />

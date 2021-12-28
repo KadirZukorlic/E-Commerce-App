@@ -15,14 +15,14 @@ const Dashboard = props => {
   useEffect(() => {
     dispatch(
       getUserOrderHistory(currentUser.id)
-    );
+      );
 
   }, []);
 
   return (
     <div>
       <h1>
-        Order History
+        order History
       </h1>
 
     </div>

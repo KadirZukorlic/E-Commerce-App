@@ -23,8 +23,6 @@ const Checkout = () => {
   const { cartItems, total } = useSelector(mapState);
   const dispatch = useDispatch()
 
-  console.log(cartItems, 'CART ITEMS');
-
   const errMsg = 'You have no items in Your cart.';
 
   //   if (!Array.isArray(cartItems) || cartItems.length < 1) return null;

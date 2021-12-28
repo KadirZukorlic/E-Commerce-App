@@ -13,7 +13,7 @@ export function* getUserOrderHistory({payload}) {
     );
 
   } catch (err) {
-    // console.log(err)
+    console.log(err)
   }
 }
 
