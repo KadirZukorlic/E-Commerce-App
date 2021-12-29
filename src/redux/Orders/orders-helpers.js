@@ -31,7 +31,8 @@ export const handleGetUserOrderHistory = (uid) => {
             };
           })
         ];
-        resolve({data});
+        
+        resolve({ data });
       })
       .catch((err) => {
         reject(err);

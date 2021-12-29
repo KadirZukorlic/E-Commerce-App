@@ -19,7 +19,7 @@ export function* getUserOrderHistory({payload}) {
 
 
 export function* onGetUserOrderHistoryStart() {
-  yield takeLatest(ordersTypes.SET_USER_ORDER_HISTORY, getUserOrderHistory)
+  yield takeLatest(ordersTypes.GET_USER_ORDER_HISTORY, getUserOrderHistory)
 }
 
 
