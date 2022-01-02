@@ -8,15 +8,15 @@ import moment from 'moment';
 const columns = [
   {
     id: 'createdDate',
-    lable: 'Order Date'
+    label: 'Order Date'
   },
   {
     id: 'documentID',
-    lable: 'Order ID'
+    label: 'Order ID'
   },
   {
     id: 'orderTotal',
-    lable: 'Amount'
+    label: 'Amount'
   }
 ];
 
@@ -46,14 +46,14 @@ const OrderHistory = ({ orders }) => {
         <TableHead>
           <TableRow>
             {columns.map((column, pos) => {
-              const { lable } = column;
+              const { label } = column;
 
               return (
                 <TableCell
                   key={pos}
                   style={styles}
                 >
-                  {lable}
+                  {label}
                 </TableCell>
               )
             })}
