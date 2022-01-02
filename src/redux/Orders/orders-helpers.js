@@ -1,6 +1,6 @@
 import { firestore } from '../../firebase/utils';
 
-export const handleSaveOrder = (order) => {
+export const handleSaveOrder = order => {
   return new Promise((resolve, reject) => {
     firestore
       .collection('orders')
@@ -9,34 +9,33 @@ export const handleSaveOrder = (order) => {
       .then(() => {
         resolve();
       })
-      .catch((err) => {
+      .catch(err => {
         reject(err);
       });
   });
 };
 
-export const handleGetUserOrderHistory = (uid) => {
+export const handleGetUserOrderHistory = uid => {
   return new Promise((resolve, reject) => {
     let ref = firestore.collection('orders').orderBy('createdDate');
     ref = ref.where('orderUserID', '==', uid);
 
     ref
       .get()
-      .then((snapshot) => {
+      .then(snap => {
         const data = [
-          snapshot.docs.map((doc) => {
+          ...snap.docs.map(doc => {
             return {
               ...doc.data(),
-              documentID: doc.id,
-            };
+              documentID: doc.id
+            }
           })
         ];
-        
+
         resolve({ data });
       })
-      .catch((err) => {
+      .catch(err => {
         reject(err);
       });
   });
 };
-

@@ -27,8 +27,9 @@ export function* onGetUserOrderHistoryStart() {
 
 
 export function* saveOrder({ payload }) {
-  const timestamp = new Date();
   try {
+    const timestamp = new Date();
+    
     yield handleSaveOrder({
       ...payload,
       orderUserID: auth.currentUser.uid,
