@@ -18,7 +18,7 @@ export const rootReducer = combineReducers({
 const configStorage = {
   key: 'root',
   storage,
-  whitelist: ['cartData'], // add white list: ['cartData', 'user'] to prevent losing user when reloading the page
+  whitelist: ['cartData', 'user'], // add white list: ['cartData', 'user'] to prevent losing user when reloading the page
 };
 
 export default persistReducer(configStorage, rootReducer);

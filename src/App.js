@@ -26,6 +26,7 @@ import Login from "./pages/Login";
 import Recovery from "./pages/Recovery";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
+import Order from './pages/Order';
 
 import "./default.scss";
 
@@ -125,6 +126,18 @@ const App = (props) => {
             <WithAuth>
               <DashBoardLayout>
                 <Dashboard />
+              </DashBoardLayout>
+            </WithAuth>
+          )}
+        />
+
+        <Route
+          exact
+          path="/order/:orderID"
+          render={() => (
+            <WithAuth>
+              <DashBoardLayout>
+                <Order />
               </DashBoardLayout>
             </WithAuth>
           )}

@@ -4,6 +4,7 @@ import {
   TableRow, TableBody, TableCell
 } from '@mui/material';
 import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 
 const columns = [
   {
@@ -38,6 +39,7 @@ const formatText = (columnName, columnValue) => {
 };
 
 const OrderHistory = ({ orders }) => {
+  const history = useHistory();
 
   return (
     <TableContainer>
@@ -63,9 +65,8 @@ const OrderHistory = ({ orders }) => {
         <TableBody>
 
           {(Array.isArray(orders) && orders.length > 0) && orders.map((row, pos) => {
+            const {documentID} = row;
 
-              console.log(orders, 'orders') 
-              console.log(row, 'row') //undefined -- row is an array of objects, and it should be only objects so i can access properties
             return (
               <TableRow
                 key={pos}
@@ -80,6 +81,7 @@ const OrderHistory = ({ orders }) => {
                     <TableCell
                       key={pos}
                       style={styles}
+                      onClick={() => history.push(`/order/${documentID}`)}
                     >
                       {formattedText}
                     </TableCell>
