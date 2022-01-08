@@ -25,6 +25,9 @@ const AdminLayout = (props) => {
                 <Link to="/admin">Home</Link>
               </li>
               <li>
+                <Link to="/all-orders">Orders</Link>
+              </li>
+              <li>
                 <span className="signOut" onClick={() => signOut()}>
                   Sign Out
                 </span>

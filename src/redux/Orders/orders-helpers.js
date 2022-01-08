@@ -59,3 +59,19 @@ export const handleGetOrderDetails = (orderID) => {
     })
   })
 }
+
+
+export const handleGetAllOrders = () => {
+  return new Promise((resolve, reject) => {
+    firestore
+      .collection('orders')
+      .get()
+      .then((snapshot) => {
+        const data = snapshot.docs.map((doc) => doc.data())
+        resolve(data);
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}

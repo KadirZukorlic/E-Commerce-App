@@ -24,3 +24,12 @@ export const setOrderDetails = (order) => ({
   type: ordersTypes.SET_ORDER_DETAILS,
   payload: order,
 });
+
+export const getAllOrdersStart = () => ({
+  type: ordersTypes.GET_ALL_ORDERS_START,
+});
+
+export const setAllOrders = (allOrders) => ({
+  type: ordersTypes.SET_ALL_ORDERS,
+  payload: allOrders
+})

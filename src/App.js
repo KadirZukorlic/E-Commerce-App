@@ -18,6 +18,7 @@ import DashBoardLayout from "./components/layouts/DashboardLayout";
 
 // pages
 import Admin from "./pages/Admin";
+import AllOrders from "./pages/Admin/AllOrders";
 import Dashboard from "./pages/Dashboard";
 import Homepage from "././pages/Homepage";
 import Search from "./pages/Search";
@@ -150,6 +151,18 @@ const App = (props) => {
             <WithAdminAuth>
               <AdminLayout>
                 <Admin />
+              </AdminLayout>
+            </WithAdminAuth>
+          )}
+        />
+
+        <Route
+          exact
+          path="/all-orders"
+          render={() => (
+            <WithAdminAuth>
+              <AdminLayout>
+                <AllOrders />
               </AdminLayout>
             </WithAdminAuth>
           )}

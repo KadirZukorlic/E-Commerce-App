@@ -27,6 +27,7 @@ export function* onAddProductStart() {
   yield takeLatest(productsTypes.ADD_NEW_PRODUCT_START, addProduct);
 }
 
+
 export function* fetchProducts({ payload }) {
   try {
     const products = yield handleFetchProducts(payload);
@@ -41,6 +42,7 @@ export function* fetchProducts({ payload }) {
 export function* onFetchProductsStart() {
   yield takeLatest(productsTypes.FETCH_PRODUCTS_START, fetchProducts)
 }
+
 
 export function* deleteProduct({payload}) {
    try {
