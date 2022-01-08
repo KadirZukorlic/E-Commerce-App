@@ -21,7 +21,7 @@ const mapState = createStructuredSelector({
 const Checkout = () => {
   const history = useHistory();
   const { cartItems, total } = useSelector(mapState);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const errMsg = 'You have no items in Your cart.';
 
