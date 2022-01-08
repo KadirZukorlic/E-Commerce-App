@@ -73,7 +73,7 @@ export function* onSignOutUserStart() {
 }
 
 export function* signUpStart({
-  payload: { displayName, email, password, confirmPassword },
+  payload: { displayName, email, phoneNumber, password, confirmPassword },
 }) {
   if (password !== confirmPassword) {
     const err = ["Password Don't match"];
@@ -82,7 +82,7 @@ export function* signUpStart({
   }
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    const additionalData = { displayName };
+    const additionalData = { displayName, phoneNumber };
     yield getSnapshotFromUserAuth(user, additionalData);
   } catch (err) {
     // console.log(err);

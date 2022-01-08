@@ -1,17 +1,12 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import "firebase/compat/database"
 import "firebase/compat/firestore";
-
 import { firebaseConfig } from "./config";
 
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
-
-
-
 
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 GoogleProvider.setCustomParameters({ prompt: "select_account" });
@@ -27,7 +22,7 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
   // if user doesnt exist, we have to store information like bellow
   // and to set it, and register that user
   if (!snapshot.exists) {
-    const { displayName, email } = userAuth;
+    const { displayName, email, phoneNumber } = userAuth;
     const timestamp = new Date();
     const userRoles = ['user'];
 
@@ -35,6 +30,7 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
       await userRef.set({
         displayName,
         email,
+        phoneNumber,
         userRoles,
         createdDate: timestamp,
         ...additionalData,
@@ -54,4 +50,3 @@ export const getCurrentUser = () => {
     }, reject);
   })
 }
-

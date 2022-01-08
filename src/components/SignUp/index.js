@@ -21,6 +21,7 @@ const SignUp = (props) => {
   
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -48,13 +49,15 @@ const SignUp = (props) => {
     }
   }, [userErr]);
 
+
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
     dispatch(
       signUpUserStart({
         displayName,
         email,
+        phoneNumber,
         password,
         confirmPassword,
       })
@@ -91,6 +94,15 @@ const SignUp = (props) => {
             placeholder="Email"
             handleChange={(event) => setEmail(event.target.value)}
           />
+
+          <FormInput
+            type="text"
+            name="phoneNumber"
+            value={phoneNumber}
+            placeholder="Phone Number"
+            handleChange={(event) => setPhoneNumber(event.target.value)}
+          />
+          
           <FormInput
             type="password"
             name="password"
@@ -98,6 +110,7 @@ const SignUp = (props) => {
             placeholder="Password"
             handleChange={(event) => setPassword(event.target.value)}
           />
+
           <FormInput
             type="password"
             name="confirmPassword"
