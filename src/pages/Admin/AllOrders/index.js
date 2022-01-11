@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   TableContainer,
   Table,
@@ -46,23 +46,29 @@ const formatText = (columnName, columnValue) => {
   }
 };
 
-const getOrders = async () => {
-  await firestore
-    .collection('orders')
-    .get()
-    .then((snapshot) => {
-      const orders = snapshot.docs.map((doc) => doc.data());
-      console.log(orders, 'orders?');
-    });
-};
 
-const AllOrders = ({ orders }) => {
+// const getOrders = async () => {
+//   await firestore
+//     .collection('orders')
+//     .get()
+//     .then((snapshot) => {
+//       const orders = snapshot.docs.map((doc) => doc.data());
+//       console.log(orders, 'orders?');
+//     });
+// };
+
+const mapState = ({ordersData}) => ({
+  allOrders: ordersData.allOrders
+})
+
+const AllOrders = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { allOrders } = useSelector(mapState);
+  console.log(allOrders, 'ALL ORDERS')
 
   useEffect(() => {
     dispatch(getAllOrdersStart());
-    getOrders();
   }, []);
 
   return (
@@ -83,9 +89,9 @@ const AllOrders = ({ orders }) => {
         </TableHead>
 
         <TableBody>
-          {Array.isArray(orders) &&
-            orders.length > 0 &&
-            orders.map((row, pos) => {
+          {Array.isArray(allOrders) &&
+            allOrders.length > 0 &&
+            allOrders.map((row, pos) => {
               const { documentID } = row;
 
               return (
