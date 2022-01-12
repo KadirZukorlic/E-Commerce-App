@@ -20,7 +20,7 @@ const columns = [
     label: 'Order Date',
   },
   {
-    id: 'documentID',
+    id: 'orderUserID',
     label: 'Order ID',
   },
   {
@@ -57,7 +57,7 @@ const formatText = (columnName, columnValue) => {
 //     });
 // };
 
-const mapState = ({ordersData}) => ({
+const mapState = ({ ordersData }) => ({
   allOrders: ordersData.allOrders
 })
 

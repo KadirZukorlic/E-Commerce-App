@@ -35,7 +35,7 @@ export function* saveOrder({ payload }) {
     });
 
     // yield put(
-      // clearCart() //create after this action to clear cart after saving order in db
+      // clearCart() //create action and put it after saving order to cart after saving order in db
     // )
   } catch (err) {
     // console.log(err)
