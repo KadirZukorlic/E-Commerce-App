@@ -23,8 +23,21 @@
         img {
             display: block;
             width: 100%;
-            // height: 40rem; //check at the end
+            height: 40rem; //check at the end
             margin: 0;
+            @media only screen and (max-width: 1000px) {
+                img {
+                    height: 20rem;
+                }
+
+                @media only screen and (max-width: 870px) {
+                    img {
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
+            
+            }
         }
     }
 }
@@ -68,5 +81,11 @@
                 margin: 2rem 0 0 0;
             }
         }
+    }
+}
+
+@media only screen and (max-width: 870px) {
+    .product {
+        width: 100%;
     }
 }
